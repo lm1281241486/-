@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <!-- 过滤器 -->
+  <div id="app">
+    <!-- <input type="text" v-slice="a"> -->
+    <!-- 1,000,000 -->
+    {{ money | toMoney(2) | ceshi }}
+  </div>
+  
+
+  <script>
+
+    // filter
+    Vue.filter('toMoney', (value, times) => {
+      return (value * times).toLocaleString();
+    });
+
+    Vue.filter('ceshi', value => {
+      console.log(value);
+      return value;
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        a: 10,
+        money: 1000000
+      },
+      directives: {
+        slice: (el, bindings, vnode) => {
+          console.log(el);
+          console.log(bindings);
+          console.log(vnode);
+        }
+      },
+      filters: {
+        toMoney: () => {}
+      }
+    })
+  </script> 
+</body>
+</html>
